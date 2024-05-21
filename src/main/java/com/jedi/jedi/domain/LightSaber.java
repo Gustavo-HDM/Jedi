@@ -1,4 +1,4 @@
-package Model;
+package com.jedi.jedi.domain;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,21 +10,17 @@ import lombok.Data;
 
 @Entity
 @Data
-@Table(name = "planet")
-public class Planet {
+@Table(name = "light_saber")
+public class LightSaber {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
+	@Column (name = "id")
 	private Long id;
 	
-	@Column(name = "name")
-	private String name;
+	@Column(name = "color")
+	public String color;
 	
-	@Column(name = "population")
-	private Integer pop;
-	
-	@Column(name = "affiliated_jedi")
-	private Jedi jedi;
-	
+	@Column(name = "size")
+	public Double size;
 }

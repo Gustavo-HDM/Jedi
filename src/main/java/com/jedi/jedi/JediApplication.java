@@ -9,5 +9,4 @@ public class JediApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(JediApplication.class, args);
 	}
-
 }
