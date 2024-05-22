@@ -3,7 +3,9 @@ package com.jedi.jedi.repository;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
-import com.jedi.jedi.domain.Jedi;
+import com.jedi.jedi.domain.Padawan;
 
 @Repository
-public interface JediRepository extends CrudRepository<Jedi, Long> {}
+public interface PadawanRepository extends CrudRepository<Padawan, Long>{
+
+}

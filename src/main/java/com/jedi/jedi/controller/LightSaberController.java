@@ -8,20 +8,20 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.jedi.jedi.domain.Jedi;
-import com.jedi.jedi.service.JediService;
+import com.jedi.jedi.domain.LightSaber;
+import com.jedi.jedi.service.LightSaberService;
 
 @RestController
-@RequestMapping("/jedi")
+@RequestMapping("/jedi") //REVER
 @CrossOrigin(origins = "*")
-public class JediController {
+public class LightSaberController {
 
 	@Autowired
-	private JediService service;
+	private LightSaberService service;
 	
 	@PostMapping
-	public ResponseEntity<Jedi> saveJedi(@RequestBody Jedi jedi) {
-		service.addJedi(jedi);
+	public ResponseEntity<LightSaber> saveLightSaber(@RequestBody LightSaber lightSaber) {
+		service.addLightSaber(lightSaber);
 		return ResponseEntity.ok().build();
 	}
 }
