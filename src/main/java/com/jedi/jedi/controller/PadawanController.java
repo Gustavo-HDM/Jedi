@@ -12,7 +12,7 @@ import com.jedi.jedi.domain.Padawan;
 import com.jedi.jedi.service.PadawanService;
 
 @RestController
-@RequestMapping("/jedi") //REVER
+@RequestMapping("/padawan") //REVER
 @CrossOrigin(origins = "*")
 public class PadawanController {
 

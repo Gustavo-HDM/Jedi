@@ -12,7 +12,7 @@ import com.jedi.jedi.domain.Planet;
 import com.jedi.jedi.service.PlanetService;
 
 @RestController
-@RequestMapping("/jedi") //REVER
+@RequestMapping("/planet") //REVER
 @CrossOrigin(origins = "*")
 public class PlanetController {
 

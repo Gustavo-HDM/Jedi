@@ -1,5 +1,7 @@
 package com.jedi.jedi.domain;
 
+import com.jedi.jedi.dto.JediRequestDTO;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -32,4 +34,10 @@ public class Jedi {
 	
 	@Column(name = "power_level")
 	private Integer powerLevel;
+	
+	public Jedi(JediRequestDTO jediDTO) {
+		this.name = jediDTO.name();
+		this.race = jediDTO.race();
+		this.powerLevel = jediDTO.powerLevel();
+	}
 }

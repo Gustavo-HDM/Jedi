@@ -12,7 +12,7 @@ import com.jedi.jedi.domain.LightSaber;
 import com.jedi.jedi.service.LightSaberService;
 
 @RestController
-@RequestMapping("/jedi") //REVER
+@RequestMapping("/light_saber") //REVER
 @CrossOrigin(origins = "*")
 public class LightSaberController {
 

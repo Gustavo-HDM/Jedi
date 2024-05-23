@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jedi.jedi.domain.Jedi;
+import com.jedi.jedi.dto.JediRequestDTO;
 import com.jedi.jedi.repository.JediRepository;
 import com.jedi.jedi.service.JediService;
 
@@ -15,11 +16,16 @@ public class JediServiceImpl implements JediService{
 	@Autowired
 	private JediRepository repository;
 	
-	//TODO JEDI RETURN
 	@Override
-	public void addJedi(Jedi jedi) {
+	public void addJedi(JediRequestDTO jediDTO) {
+		Jedi jedi = new Jedi(jediDTO);
 		repository.save(jedi);
 	}
+	
+//	@Override
+//	public void addJedi(Jedi jedi) {
+//		repository.save(jedi);
+//	}
 
 	@Override
 	public Jedi getJedi(Long id) {
