@@ -6,8 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jedi.jedi.domain.Planet;
+import com.jedi.jedi.dto.PlanetRequestDTO;
 import com.jedi.jedi.repository.PlanetRepository;
 import com.jedi.jedi.service.PlanetService;
+
+import jakarta.transaction.Transactional;
 
 @Service
 public class PlanetServiceImpl implements PlanetService{
@@ -16,7 +19,8 @@ public class PlanetServiceImpl implements PlanetService{
 	private PlanetRepository repository;
 	
 	@Override
-	public void addPlanet(Planet planet) {
+	public void addPlanet(PlanetRequestDTO planetDTO) {
+		Planet planet = new Planet(planetDTO);
 		repository.save(planet);
 	}
 
@@ -24,6 +28,22 @@ public class PlanetServiceImpl implements PlanetService{
 	public Planet getPlanet(Long id) {
 		Optional<Planet> planetOpt = repository.findById(id);
 		return planetOpt.orElse(null);
+	}
+
+	@Override
+	public void delPlanet(Long id) {
+		repository.deleteById(id);
+	}
+
+	@Transactional
+	@Override
+	public void uptPlanet(Long id, PlanetRequestDTO planetDTO) {
+		Optional<Planet> planetOpt = repository.findById(id);
+		if (planetOpt.isPresent()) {
+			Planet planet = new Planet(planetDTO);
+			planet.setId(id);
+			repository.save(planet);
+		}
 	}
 
 }

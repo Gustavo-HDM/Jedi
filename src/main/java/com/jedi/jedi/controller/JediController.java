@@ -1,17 +1,22 @@
 package com.jedi.jedi.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.jedi.jedi.domain.Jedi;
 import com.jedi.jedi.dto.JediRequestDTO;
+import com.jedi.jedi.dto.PowerLevelRequestDTO;
 import com.jedi.jedi.service.JediService;
 
 @RestController
@@ -33,5 +38,23 @@ public class JediController {
 	public ResponseEntity<Jedi> getJedi(@PathVariable Long id){
 		Jedi jedi = service.getJedi(id);
 		return ResponseEntity.ok(jedi);
+	}
+	
+	@DeleteMapping ("/{id}")
+	public ResponseEntity<Jedi> delJedi(@PathVariable Long id) {
+		service.delJedi(id);
+		return ResponseEntity.ok().build();
+	}
+	
+	@PutMapping ("/{id}")
+	public ResponseEntity<Jedi> uptJedi(@PathVariable Long id, @RequestBody JediRequestDTO jedi) {
+		service.uptJedi(id, jedi);
+		return ResponseEntity.ok().build();
+	}
+	
+	@GetMapping ("/filterPower")
+	public ResponseEntity<List<Jedi>> filterPowerJedi(@RequestBody PowerLevelRequestDTO dto) {
+		List<Jedi> jediList = service.filterPowerJedi(dto.minPower(), dto.maxPower());
+		return ResponseEntity.ok(jediList);
 	}
 }

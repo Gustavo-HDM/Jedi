@@ -1,5 +1,7 @@
 package com.jedi.jedi.domain;
 
+import com.jedi.jedi.dto.PadawanRequestDTO;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -10,9 +12,13 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.Data;
+import lombok.Getter;
+import lombok.ToString;
 
 @Entity
 @Data
+@Getter
+@ToString
 @Table(name = "padawan")
 public class Padawan {
 
@@ -37,4 +43,14 @@ public class Padawan {
 	@ManyToOne
 	@JoinColumn(name = "master_jedi_id", referencedColumnName = "id")
 	private Jedi jedi;
+	
+	public Padawan() {
+		
+	}
+	
+	public Padawan(PadawanRequestDTO padawanDTO) {
+		this.name = padawanDTO.name();
+		this.race = padawanDTO.race();
+		this.powerLevel = padawanDTO.powerLevel();
+	}
 }

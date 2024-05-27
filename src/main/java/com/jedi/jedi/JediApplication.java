@@ -6,10 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class JediApplication {
 
-	//TODO Fazer as documentações
-	//TODO Verificar o Add
-	//TODO Terminar o CRUD das outras entidades
-	
+	//TODO FAZER VALIDAÇÕES
 	public static void main(String[] args) {
 		SpringApplication.run(JediApplication.class, args);
 	}
