@@ -1,0 +1,28 @@
+version: '3.8'
+services:
+  database:
+    image: mysql:8.0.32
+    container_name: my-mysql-container
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'jedi'
+      MYSQL_USER: 'jedi_user'
+      MYSQL_PASSWORD: 'jedi_password'
+      MYSQL_ROOT_PASSWORD: 'admin'
+    ports:
+      - '3306:3306'
+    expose:
+      - '3306'
+    volumes:
+      - './volumes/mysql:/var/lib/mysql'
+      
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: my-phpmyadmin-container
+    restart: always
+    environment:
+      PMA_HOST: database
+      PMA_USER: socialmedia_user
+      PMA_PASSWORD: socialmedia_pass
+    ports:
+      - '8081:80'

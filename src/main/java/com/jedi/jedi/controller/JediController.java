@@ -19,6 +19,8 @@ import com.jedi.jedi.dto.JediRequestDTO;
 import com.jedi.jedi.dto.PowerLevelRequestDTO;
 import com.jedi.jedi.service.JediService;
 
+import jakarta.validation.Valid;
+
 @RestController
 @RequestMapping("/jedi")
 @CrossOrigin(origins = "*")
@@ -28,8 +30,7 @@ public class JediController {
 	private JediService service;
 	
 	@PostMapping
-	public ResponseEntity<Jedi> saveJedi(@RequestBody JediRequestDTO jedi) {
-		//service.addJedi(jedi);
+	public ResponseEntity<Jedi> saveJedi(@RequestBody @Valid JediRequestDTO jedi) {
 		service.addJedi(jedi);
 		return ResponseEntity.status(201).build();
 	}

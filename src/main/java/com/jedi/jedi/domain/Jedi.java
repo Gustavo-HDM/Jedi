@@ -36,17 +36,24 @@ public class Jedi {
 	@JoinColumn(name = "light_saber_id", referencedColumnName = "id")
 	private LightSaber lightSaber;
 
+	//TODO colocar planeta aqui @ManyToOne
+	
 	@Column(name = "power_level")
 	private Integer powerLevel;
 
 	public Jedi() {
 	}
 
+	public Jedi(JediRequestDTO jediDTO, LightSaber lightSaber) {
+		this.name = jediDTO.name();
+		this.race = jediDTO.race();
+		this.powerLevel = jediDTO.powerLevel();
+		this.lightSaber = lightSaber;
+	}
+	
 	public Jedi(JediRequestDTO jediDTO) {
 		this.name = jediDTO.name();
 		this.race = jediDTO.race();
 		this.powerLevel = jediDTO.powerLevel();
 	}
-	
-	
 }

@@ -34,6 +34,7 @@ public class Planet {
 	@Column(name = "population")
 	private Integer pop;
 	
+	//TODO colocar planeta em jedi
 	@OneToMany
 	@JoinColumn(name = "affiliated_jedi_id", referencedColumnName = "id")
 	private List<Jedi> jedi;

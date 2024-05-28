@@ -7,9 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jedi.jedi.domain.Jedi;
+import com.jedi.jedi.domain.LightSaber;
 import com.jedi.jedi.dto.JediRequestDTO;
 import com.jedi.jedi.repository.JediRepository;
 import com.jedi.jedi.service.JediService;
+import com.jedi.jedi.service.LightSaberService;
 
 import jakarta.transaction.Transactional;
 
@@ -19,6 +21,8 @@ public class JediServiceImpl implements JediService{
 	@Autowired
 	private JediRepository repository;
 	
+	@Autowired
+	private LightSaberService lightSaberService;
 //	@Override
 //	public void addJedi(Jedi jedi) {
 //		repository.save(jedi);
@@ -26,7 +30,8 @@ public class JediServiceImpl implements JediService{
 	
 	@Override
 	public void addJedi(JediRequestDTO jediDTO) {
-		Jedi jedi = new Jedi(jediDTO);
+		LightSaber lightSaber = lightSaberService.getLightSaber(jediDTO.idLightSaber());
+		Jedi jedi = new Jedi(jediDTO, lightSaber);
 		repository.save(jedi);
 	}
 
