@@ -34,4 +34,6 @@ public interface LightSaberService {
 	 * @throws LightSaberException, LightSaberNullException
 	 */
 	public void uptLightSaber(Long id, LightSaberRequestDTO lightSaberDTO);
+	
+	public boolean isDuplicated(String color, Double size);
 }

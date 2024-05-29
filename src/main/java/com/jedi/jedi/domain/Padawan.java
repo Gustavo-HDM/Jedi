@@ -11,6 +11,7 @@ import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.Data;
 import lombok.Getter;
 import lombok.ToString;
@@ -27,12 +28,15 @@ public class Padawan {
 	@Column(name = "id")
 	private Long id;
 	
+	@NotBlank (message = "Name is obligatory")
 	@Column(name = "name")
 	private String name;
 	
+	@NotBlank (message = "Race is obligatory")
 	@Column(name = "race")
 	private String race;
 	
+	@NotBlank (message = "A Padawan must have an light saber")
 	@OneToOne
 	@JoinColumn(name = "light_saber_id", referencedColumnName = "id")
 	private LightSaber lightSaber;

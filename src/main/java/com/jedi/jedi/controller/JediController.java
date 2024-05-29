@@ -48,7 +48,7 @@ public class JediController {
 	}
 	
 	@PutMapping ("/{id}")
-	public ResponseEntity<Jedi> uptJedi(@PathVariable Long id, @RequestBody JediRequestDTO jedi) {
+	public ResponseEntity<Jedi> uptJedi(@PathVariable Long id, @RequestBody @Valid JediRequestDTO jedi) {
 		service.uptJedi(id, jedi);
 		return ResponseEntity.ok().build();
 	}

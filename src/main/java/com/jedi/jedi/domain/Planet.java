@@ -1,7 +1,5 @@
 package com.jedi.jedi.domain;
 
-import java.util.List;
-
 import com.jedi.jedi.dto.PlanetRequestDTO;
 
 import jakarta.persistence.Column;
@@ -9,9 +7,9 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.Getter;
 import lombok.ToString;
@@ -28,16 +26,16 @@ public class Planet {
 	@Column(name = "id")
 	private Long id;
 	
+	@NotBlank (message = "Name is obligatory")
 	@Column(name = "name")
 	private String name;
 	
 	@Column(name = "population")
 	private Integer pop;
 	
-	//TODO colocar planeta em jedi
-	@OneToMany
-	@JoinColumn(name = "affiliated_jedi_id", referencedColumnName = "id")
-	private List<Jedi> jedi;
+//	@OneToMany
+//	@JoinColumn(name = "affiliated_jedi_id", referencedColumnName = "id")
+//	private List<Jedi> jedi;
 	
 	public Planet() {
 		

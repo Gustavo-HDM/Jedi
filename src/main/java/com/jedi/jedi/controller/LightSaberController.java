@@ -14,9 +14,11 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jedi.jedi.domain.LightSaber;
 import com.jedi.jedi.dto.LightSaberRequestDTO;
+import com.jedi.jedi.exceptions.DuplicatedLightSaber;
 import com.jedi.jedi.service.LightSaberService;
 
 import jakarta.transaction.Transactional;
+import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/light_saber")
@@ -27,8 +29,12 @@ public class LightSaberController {
 	private LightSaberService service;
 	
 	@PostMapping
-	public ResponseEntity<LightSaber> saveLightSaber(@RequestBody LightSaberRequestDTO lightSaberDTO) {
+	public ResponseEntity<LightSaber> saveLightSaber(@RequestBody @Valid LightSaberRequestDTO lightSaberDTO) {
+		try {
 		service.addLightSaber(lightSaberDTO);
+		} catch (DuplicatedLightSaber e) {
+			ResponseEntity.status(409).build();
+		}
 		return ResponseEntity.ok().build();
 	}
 	
