@@ -1,7 +1,5 @@
 package com.jedi.jedi.dto;
 
-import com.jedi.jedi.domain.LightSaber;
-
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 
