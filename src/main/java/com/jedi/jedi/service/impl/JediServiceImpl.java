@@ -23,10 +23,6 @@ public class JediServiceImpl implements JediService{
 	
 	@Autowired
 	private LightSaberService lightSaberService;
-//	@Override
-//	public void addJedi(Jedi jedi) {
-//		repository.save(jedi);
-//	}
 	
 	@Override
 	public void addJedi(JediRequestDTO jediDTO) {

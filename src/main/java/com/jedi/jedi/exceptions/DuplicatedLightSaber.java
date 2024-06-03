@@ -7,5 +7,4 @@ public class DuplicatedLightSaber extends RuntimeException{
 	public DuplicatedLightSaber(String message) {
 		super(message);
 	}
-
 }

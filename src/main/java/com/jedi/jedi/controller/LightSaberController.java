@@ -29,7 +29,7 @@ public class LightSaberController {
 	private LightSaberService service;
 	
 	@PostMapping
-	public ResponseEntity<LightSaber> saveLightSaber(@RequestBody @Valid LightSaberRequestDTO lightSaberDTO) {
+	public ResponseEntity<LightSaber> saveLightSaber(@RequestBody LightSaberRequestDTO lightSaberDTO) {
 		try {
 		service.addLightSaber(lightSaberDTO);
 		} catch (DuplicatedLightSaber e) {
