@@ -12,7 +12,6 @@ import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.Getter;
 import lombok.ToString;
@@ -48,6 +47,10 @@ public class Jedi {
 	@ManyToOne
 	@JoinColumn(name = "planet", referencedColumnName = "id")
 	private Planet planet;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id", referencedColumnName = "id")
+	private User userId;
 
 	public Jedi() {
 	}

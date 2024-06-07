@@ -1,6 +1,7 @@
 package com.jedi.jedi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,7 +19,6 @@ import com.jedi.jedi.exceptions.DuplicatedLightSaber;
 import com.jedi.jedi.service.LightSaberService;
 
 import jakarta.transaction.Transactional;
-import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/light_saber")
@@ -29,13 +29,13 @@ public class LightSaberController {
 	private LightSaberService service;
 	
 	@PostMapping
-	public ResponseEntity<LightSaber> saveLightSaber(@RequestBody LightSaberRequestDTO lightSaberDTO) {
+	public ResponseEntity<Object> saveLightSaber(@RequestBody LightSaberRequestDTO lightSaberDTO) {
 		try {
 		service.addLightSaber(lightSaberDTO);
 		} catch (DuplicatedLightSaber e) {
-			ResponseEntity.status(409).build();
+			return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
 		}
-		return ResponseEntity.ok().build();
+		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
 	
 	@GetMapping ("/{id}")

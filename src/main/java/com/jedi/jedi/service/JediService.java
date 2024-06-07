@@ -12,6 +12,7 @@ public interface JediService {
 	 * @throws JediException
 	 * @param jedi
 	 */
+	
 	public void addJedi(JediRequestDTO jedi);
 	
 	/**

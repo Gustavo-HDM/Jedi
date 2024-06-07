@@ -48,6 +48,10 @@ public class Padawan {
 	@JoinColumn(name = "master_jedi_id", referencedColumnName = "id")
 	private Jedi jedi;
 	
+	@ManyToOne
+	@JoinColumn(name = "user_id", referencedColumnName = "id")
+	private User userId;
+	
 	public Padawan() {
 		
 	}
