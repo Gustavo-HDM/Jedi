@@ -38,6 +38,8 @@ public interface JediService {
 	 */
 	public void uptJedi(Long id, JediRequestDTO jedi);
 	
+	public List<Jedi> getAllJedi();
+	
 	public List<Jedi> filterPowerJedi(Integer minPower, Integer maxPower);
 	
 }

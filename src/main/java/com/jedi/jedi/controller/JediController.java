@@ -4,6 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -58,4 +60,19 @@ public class JediController {
 		List<Jedi> jediList = service.filterPowerJedi(dto.minPower(), dto.maxPower());
 		return ResponseEntity.ok(jediList);
 	}
+	
+	@GetMapping ("/getAll")
+	public ResponseEntity<List<Jedi>> getAllJedi() {
+		List<Jedi> jediList = service.getAllJedi();
+		return ResponseEntity.ok(jediList);
+	}
+	
+//	private String getUsernameFromSecurityContext() {
+//        Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+//        if (principal instanceof UserDetails) {
+//            return ((UserDetails) principal).getUsername();
+//        } else {
+//            return principal.toString();
+//        }
+//    }
 }

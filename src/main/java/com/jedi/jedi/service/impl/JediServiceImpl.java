@@ -8,10 +8,12 @@ import org.springframework.stereotype.Service;
 
 import com.jedi.jedi.domain.Jedi;
 import com.jedi.jedi.domain.LightSaber;
+import com.jedi.jedi.domain.User;
 import com.jedi.jedi.dto.JediRequestDTO;
 import com.jedi.jedi.repository.JediRepository;
 import com.jedi.jedi.service.JediService;
 import com.jedi.jedi.service.LightSaberService;
+import com.jedi.jedi.service.UserService;
 
 import jakarta.transaction.Transactional;
 
@@ -22,12 +24,17 @@ public class JediServiceImpl implements JediService{
 	private JediRepository repository;
 	
 	@Autowired
+	private UserService userService;
+	
+	@Autowired
 	private LightSaberService lightSaberService;
 	
 	@Override
 	public void addJedi(JediRequestDTO jediDTO) {
 		LightSaber lightSaber = lightSaberService.getLightSaber(jediDTO.idLightSaber());
 		Jedi jedi = new Jedi(jediDTO, lightSaber);
+		User user = userService.getUsernameFromSecurityContext();
+		jedi.setUserId(user);
 		repository.save(jedi);
 	}
 
@@ -56,5 +63,11 @@ public class JediServiceImpl implements JediService{
 	@Override
 	public List<Jedi> filterPowerJedi(Integer minPower, Integer maxPower) {
 		return repository.filterPowerJedi(minPower, maxPower);
+	}
+
+	@Override
+	public List<Jedi> getAllJedi() {
+		User user = userService.getUsernameFromSecurityContext(); 
+		return repository.getAllJedi(user.getId());
 	}
 }

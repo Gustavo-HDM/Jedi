@@ -40,7 +40,7 @@ public class Jedi {
 	private Integer powerLevel;
 
 	@OneToOne
-	@NotBlank (message = "A Jedi must have an light saber")
+	//@NotBlank (message = "A Jedi must have an light saber")
 	@JoinColumn(name = "light_saber_id", referencedColumnName = "id")
 	private LightSaber lightSaber;
 

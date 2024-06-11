@@ -14,4 +14,7 @@ public interface JediRepository extends CrudRepository<Jedi, Long> {
 	
 	@Query(value = "SELECT j FROM Jedi j WHERE j.powerLevel between :min_power and :max_power")
     List<Jedi> filterPowerJedi(@Param("min_power") Integer minPower, @Param("max_power") Integer maxPower);
+	
+	@Query(value = "SELECT * FROM Jedi j WHERE j.user_id = :userId", nativeQuery = true)
+	List<Jedi> getAllJedi(@Param("userId") Long userId);
 }
