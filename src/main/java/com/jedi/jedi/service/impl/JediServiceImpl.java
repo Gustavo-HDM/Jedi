@@ -10,6 +10,8 @@ import com.jedi.jedi.domain.Jedi;
 import com.jedi.jedi.domain.LightSaber;
 import com.jedi.jedi.domain.User;
 import com.jedi.jedi.dto.JediRequestDTO;
+import com.jedi.jedi.dto.JediResponseDTO;
+import com.jedi.jedi.exceptions.RequestNotFoundException;
 import com.jedi.jedi.repository.JediRepository;
 import com.jedi.jedi.service.JediService;
 import com.jedi.jedi.service.LightSaberService;
@@ -39,9 +41,10 @@ public class JediServiceImpl implements JediService{
 	}
 
 	@Override
-	public Jedi getJedi(Long id) {
-		Optional<Jedi> jediOpt = repository.findById(id);
-		return jediOpt.orElse(null);
+	public JediResponseDTO getJedi(Long id) {
+		Optional<Jedi> jediOpt = repository.findById(id);		
+        return jediOpt.map(jedi -> new JediResponseDTO(jedi.getName(), jedi.getRace(), jedi.getPowerLevel()))
+                      .orElseThrow(() -> new RequestNotFoundException("Jedi not found with id " + id));
 	}
 
 	@Override

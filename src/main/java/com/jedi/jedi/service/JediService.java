@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.jedi.jedi.domain.Jedi;
 import com.jedi.jedi.dto.JediRequestDTO;
+import com.jedi.jedi.dto.JediResponseDTO;
 
 public interface JediService {
 
@@ -21,7 +22,7 @@ public interface JediService {
 	 * @throws JediNullException
 	 * @param id
 	 */
-	public Jedi getJedi(Long id);
+	public JediResponseDTO getJedi(Long id);
 	
 	/**
 	 * Method to delete an Jedi from the database

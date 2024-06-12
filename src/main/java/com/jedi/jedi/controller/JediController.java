@@ -4,8 +4,6 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jedi.jedi.domain.Jedi;
 import com.jedi.jedi.dto.JediRequestDTO;
+import com.jedi.jedi.dto.JediResponseDTO;
 import com.jedi.jedi.dto.PowerLevelRequestDTO;
 import com.jedi.jedi.service.JediService;
 
@@ -38,8 +37,8 @@ public class JediController {
 	}
 	
 	@GetMapping ("/{id}")
-	public ResponseEntity<Jedi> getJedi(@PathVariable Long id){
-		Jedi jedi = service.getJedi(id);
+	public ResponseEntity<JediResponseDTO> getJedi(@PathVariable Long id){
+		JediResponseDTO jedi = service.getJedi(id);
 		return ResponseEntity.ok(jedi);
 	}
 	
