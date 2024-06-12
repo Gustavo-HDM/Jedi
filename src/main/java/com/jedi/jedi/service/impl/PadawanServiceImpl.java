@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jedi.jedi.domain.Padawan;
+import com.jedi.jedi.domain.User;
 import com.jedi.jedi.dto.PadawanRequestDTO;
 import com.jedi.jedi.repository.PadawanRepository;
 import com.jedi.jedi.service.PadawanService;
+import com.jedi.jedi.service.UserService;
 
 import jakarta.transaction.Transactional;
 
@@ -18,9 +20,13 @@ public class PadawanServiceImpl implements PadawanService{
 	@Autowired
 	private PadawanRepository repository;
 	
+	@Autowired UserService userService;
+	
 	@Override
 	public void addPadawan(PadawanRequestDTO padawanDTO) {
 		Padawan padawan = new Padawan(padawanDTO);
+		User user = userService.getUserId();
+		padawan.setUserId(user);
 		repository.save(padawan);
 	}
 

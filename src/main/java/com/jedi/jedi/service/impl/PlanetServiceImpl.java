@@ -6,9 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jedi.jedi.domain.Planet;
+import com.jedi.jedi.domain.User;
 import com.jedi.jedi.dto.PlanetRequestDTO;
 import com.jedi.jedi.repository.PlanetRepository;
 import com.jedi.jedi.service.PlanetService;
+import com.jedi.jedi.service.UserService;
 
 import jakarta.transaction.Transactional;
 
@@ -18,9 +20,14 @@ public class PlanetServiceImpl implements PlanetService{
 	@Autowired
 	private PlanetRepository repository;
 	
+	@Autowired
+	private UserService userService;
+	
 	@Override
 	public void addPlanet(PlanetRequestDTO planetDTO) {
 		Planet planet = new Planet(planetDTO);
+		User user = userService.getUserId();
+		planet.setUserId(user);
 		repository.save(planet);
 	}
 

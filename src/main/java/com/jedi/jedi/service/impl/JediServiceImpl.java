@@ -35,7 +35,7 @@ public class JediServiceImpl implements JediService{
 	public void addJedi(JediRequestDTO jediDTO) {
 		LightSaber lightSaber = lightSaberService.getLightSaber(jediDTO.idLightSaber());
 		Jedi jedi = new Jedi(jediDTO, lightSaber);
-		User user = userService.getUsernameFromSecurityContext();
+		User user = userService.getUserId();
 		jedi.setUserId(user);
 		repository.save(jedi);
 	}
@@ -70,7 +70,7 @@ public class JediServiceImpl implements JediService{
 
 	@Override
 	public List<Jedi> getAllJedi() {
-		User user = userService.getUsernameFromSecurityContext(); 
+		User user = userService.getUserId(); 
 		return repository.getAllJedi(user.getId());
 	}
 }

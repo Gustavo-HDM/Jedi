@@ -7,10 +7,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.jedi.jedi.domain.LightSaber;
+import com.jedi.jedi.domain.User;
 import com.jedi.jedi.dto.LightSaberRequestDTO;
 import com.jedi.jedi.exceptions.DuplicatedLightSaber;
 import com.jedi.jedi.repository.LightSaberRepository;
 import com.jedi.jedi.service.LightSaberService;
+import com.jedi.jedi.service.UserService;
 
 import jakarta.transaction.Transactional;
 
@@ -20,10 +22,15 @@ public class LightSaberServiceImpl implements LightSaberService {
 	@Autowired
 	private LightSaberRepository repository;
 	
+	@Autowired
+	private UserService userService;
+	
 	@Override
 	public void addLightSaber(LightSaberRequestDTO lightSaberDTO) {
 		if (!isDuplicated(lightSaberDTO.color(), lightSaberDTO.size())) {
 		LightSaber lightSaber = new LightSaber(lightSaberDTO);
+		User user =userService.getUserId();
+		lightSaber.setUserId(user);
 		repository.save(lightSaber);		
 		} else {
 			throw new DuplicatedLightSaber("This Light Saber already exists");

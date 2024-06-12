@@ -11,7 +11,7 @@ import com.jedi.jedi.service.UserService;
 public class UserServiceImpl implements UserService{
 
 	@Override
-	public User getUsernameFromSecurityContext() {
+	public User getUserId() {
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         if (principal instanceof UserDetails) {
             return (User)((UserDetails)principal);

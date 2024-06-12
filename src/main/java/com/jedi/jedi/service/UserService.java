@@ -4,5 +4,5 @@ import com.jedi.jedi.domain.User;
 
 public interface UserService {
 
-	User getUsernameFromSecurityContext();
+	User getUserId();
 }
