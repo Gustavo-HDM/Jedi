@@ -44,7 +44,7 @@ public class JediServiceImpl implements JediService{
 	public JediResponseDTO getJedi(Long id) {
 		Optional<Jedi> jediOpt = repository.findById(id);		
         return jediOpt.map(jedi -> new JediResponseDTO(jedi.getName(), jedi.getRace(), jedi.getPowerLevel()))
-                      .orElseThrow(() -> new RequestNotFoundException("Jedi not found with id " + id));
+                      .orElseThrow(() -> new RequestNotFoundException("Jedi de id: " + id + " não encontrado"));
 	}
 
 	@Override

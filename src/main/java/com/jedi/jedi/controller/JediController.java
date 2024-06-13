@@ -33,7 +33,7 @@ public class JediController {
 	@PostMapping
 	public ResponseEntity<Jedi> saveJedi(@RequestBody @Valid JediRequestDTO jedi) {
 		service.addJedi(jedi);
-		return ResponseEntity.status(201).build();
+		return ResponseEntity.ok().build();
 	}
 	
 	@GetMapping ("/{id}")

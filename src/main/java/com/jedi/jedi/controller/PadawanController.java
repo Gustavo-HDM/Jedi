@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.jedi.jedi.domain.Padawan;
 import com.jedi.jedi.dto.PadawanRequestDTO;
+import com.jedi.jedi.dto.PadawanResponseDTO;
 import com.jedi.jedi.service.PadawanService;
 
 import jakarta.transaction.Transactional;
@@ -33,8 +34,8 @@ public class PadawanController {
 	}
 	
 	@GetMapping ("/{id}")
-	public ResponseEntity<Padawan> getPadawan(@PathVariable Long id) {
-		Padawan padawan = service.getPadawan(id);
+	public ResponseEntity<PadawanResponseDTO> getPadawan(@PathVariable Long id) {
+		PadawanResponseDTO padawan = service.getPadawan(id);
 		return ResponseEntity.ok(padawan);
 	}
 	

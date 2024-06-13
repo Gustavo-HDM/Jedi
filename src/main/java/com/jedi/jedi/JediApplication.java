@@ -7,10 +7,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class JediApplication {
 
 	//TODO FAZER VALIDAÇÕES
-	//TODO Saber como armazenar o usuario acessado em uma variavel
 	//TODO FAZER DTO DO RESULTADO DO POSTMAN (SERVICE, RETORNAR NO CONTROLLER)
-	//TODO FAZER MAPEAMENTO DOS OUTROS (ADICIONAR O USER, O MESMO QUE NO JEDI)
 	//TODO FAZER UM SERVIÇO DE PAGAMENTO (LIMITAR SE NÃO TIVER PAGO)
+	//TODO checar: OneToOne obriga o lightsaber ser registrado a apenas 1 jedi
 	public static void main(String[] args) {
 		SpringApplication.run(JediApplication.class, args);
 	}

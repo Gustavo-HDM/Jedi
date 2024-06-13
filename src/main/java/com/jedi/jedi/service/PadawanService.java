@@ -1,7 +1,7 @@
 package com.jedi.jedi.service;
 
-import com.jedi.jedi.domain.Padawan;
 import com.jedi.jedi.dto.PadawanRequestDTO;
+import com.jedi.jedi.dto.PadawanResponseDTO;
 
 public interface PadawanService {
 	
@@ -18,7 +18,7 @@ public interface PadawanService {
 	 * @throws PadawanNullException
 	 * @param id
 	 */
-	public Padawan getPadawan(Long id);
+	public PadawanResponseDTO getPadawan(Long id);
 	
 	/**
 	 * Method to delete an Padawan from the database

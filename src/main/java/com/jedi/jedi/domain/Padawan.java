@@ -36,8 +36,8 @@ public class Padawan {
 	@Column(name = "race")
 	private String race;
 	
-	@NotBlank (message = "A Padawan must have an light saber")
 	@OneToOne
+	//@NotBlank (message = "A Padawan must have an light saber")
 	@JoinColumn(name = "light_saber_id", referencedColumnName = "id")
 	private LightSaber lightSaber;
 	
