@@ -1,6 +1,7 @@
 package com.jedi.jedi.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.jedi.jedi.domain.Padawan;
 import com.jedi.jedi.dto.PadawanRequestDTO;
 import com.jedi.jedi.dto.PadawanResponseDTO;
+import com.jedi.jedi.exceptions.RequestNotFoundException;
 import com.jedi.jedi.service.PadawanService;
 
 import jakarta.transaction.Transactional;
@@ -34,9 +36,13 @@ public class PadawanController {
 	}
 	
 	@GetMapping ("/{id}")
-	public ResponseEntity<PadawanResponseDTO> getPadawan(@PathVariable Long id) {
-		PadawanResponseDTO padawan = service.getPadawan(id);
-		return ResponseEntity.ok(padawan);
+	public ResponseEntity<Object> getPadawan(@PathVariable Long id) {
+		try {
+			PadawanResponseDTO padawan = service.getPadawan(id);
+			return ResponseEntity.ok(padawan);
+		} catch (RequestNotFoundException e) {	
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+		}
 	}
 	
 	@DeleteMapping ("/{id}")

@@ -3,6 +3,7 @@ package com.jedi.jedi.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -18,6 +19,7 @@ import com.jedi.jedi.domain.Jedi;
 import com.jedi.jedi.dto.JediRequestDTO;
 import com.jedi.jedi.dto.JediResponseDTO;
 import com.jedi.jedi.dto.PowerLevelRequestDTO;
+import com.jedi.jedi.exceptions.RequestNotFoundException;
 import com.jedi.jedi.service.JediService;
 
 import jakarta.validation.Valid;
@@ -37,9 +39,13 @@ public class JediController {
 	}
 	
 	@GetMapping ("/{id}")
-	public ResponseEntity<JediResponseDTO> getJedi(@PathVariable Long id){
-		JediResponseDTO jedi = service.getJedi(id);
-		return ResponseEntity.ok(jedi);
+	public ResponseEntity<Object> getJedi(@PathVariable Long id){
+		try {
+			JediResponseDTO jedi = service.getJedi(id);
+			return ResponseEntity.ok(jedi);
+		} catch (RequestNotFoundException e) {
+			return ResponseEntity.status(HttpStatus.NOT_FOUND).body(e.getMessage());
+		}
 	}
 	
 	@DeleteMapping ("/{id}")

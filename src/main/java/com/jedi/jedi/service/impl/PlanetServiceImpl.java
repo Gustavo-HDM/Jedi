@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import com.jedi.jedi.domain.Planet;
 import com.jedi.jedi.domain.User;
 import com.jedi.jedi.dto.PlanetRequestDTO;
+import com.jedi.jedi.exceptions.RequestNotFoundException;
 import com.jedi.jedi.repository.PlanetRepository;
 import com.jedi.jedi.service.PlanetService;
 import com.jedi.jedi.service.UserService;
@@ -34,7 +35,7 @@ public class PlanetServiceImpl implements PlanetService{
 	@Override
 	public Planet getPlanet(Long id) {
 		Optional<Planet> planetOpt = repository.findById(id);
-		return planetOpt.orElse(null);
+		return planetOpt.orElseThrow(() -> new RequestNotFoundException("Planeta de id: " + id + " nao encontrado"));
 	}
 
 	@Override
