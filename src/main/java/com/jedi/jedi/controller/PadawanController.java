@@ -1,5 +1,7 @@
 package com.jedi.jedi.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -56,5 +58,11 @@ public class PadawanController {
 	public ResponseEntity<Padawan> uptPadawan(@PathVariable Long id, @RequestBody PadawanRequestDTO padawanDTO) {
 		service.uptPadawan(id, padawanDTO);
 		return ResponseEntity.ok().build();
+	}
+	
+	@GetMapping ("/getAll")
+	public ResponseEntity<List<Padawan>> getAllPadawan() {
+		List<Padawan> padawanList = service.getAllPadawan();
+		return ResponseEntity.ok(padawanList);
 	}
 }

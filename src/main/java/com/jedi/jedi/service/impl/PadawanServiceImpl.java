@@ -1,5 +1,6 @@
 package com.jedi.jedi.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -55,4 +56,11 @@ public class PadawanServiceImpl implements PadawanService{
 			repository.save(padawan);
 		}
 	}
+
+	@Override
+	public List<Padawan> getAllPadawan() {
+		User user = userService.getUserId();
+		return repository.getAllPadawan(user.getId());
+	}
+	
 }

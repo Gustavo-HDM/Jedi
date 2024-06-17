@@ -1,5 +1,7 @@
 package com.jedi.jedi.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -55,5 +57,11 @@ public class PlanetController {
 	public ResponseEntity<Planet> uptPlanet(@PathVariable Long id, @RequestBody PlanetRequestDTO planetDTO) {
 		service.uptPlanet(id, planetDTO);
 		return ResponseEntity.ok().build();
+	}
+	
+	@GetMapping ("/getAll")
+	public ResponseEntity<List<Planet>> getAllPlanet() {
+		List<Planet> planetList = service.getAllPlanet();
+		return ResponseEntity.ok(planetList);
 	}
 }

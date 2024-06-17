@@ -14,4 +14,7 @@ public interface LightSaberRepository extends CrudRepository<LightSaber, Long>{
 	
 	@Query (value = "Select l from LightSaber l where l.color = :color and l.size = :size")
 	List<LightSaber> isDuplicated (@Param("color") String color, @Param("size") Double size);
+	
+	@Query (value = "SELECT l from LightSaber l WHERE l.userId = :userId")
+	List<LightSaber> getAllLightSaber (@Param("userId") Long userId);
 }

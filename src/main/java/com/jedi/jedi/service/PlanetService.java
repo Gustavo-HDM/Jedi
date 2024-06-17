@@ -1,5 +1,7 @@
 package com.jedi.jedi.service;
 
+import java.util.List;
+
 import com.jedi.jedi.domain.Planet;
 import com.jedi.jedi.dto.PlanetRequestDTO;
 
@@ -34,4 +36,6 @@ public interface PlanetService {
 	 * @param planet
 	 */
 	public void uptPlanet(Long id, PlanetRequestDTO planetDTO);
+	
+	public List<Planet> getAllPlanet();
 }

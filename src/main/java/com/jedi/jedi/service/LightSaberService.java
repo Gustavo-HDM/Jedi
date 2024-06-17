@@ -1,5 +1,7 @@
 package com.jedi.jedi.service;
 
+import java.util.List;
+
 import com.jedi.jedi.domain.LightSaber;
 import com.jedi.jedi.dto.LightSaberRequestDTO;
 
@@ -36,4 +38,6 @@ public interface LightSaberService {
 	public void uptLightSaber(Long id, LightSaberRequestDTO lightSaberDTO);
 	
 	public boolean isDuplicated(String color, Double size);
+	
+	public List<LightSaber> getAllLightSaber();
 }

@@ -1,5 +1,6 @@
 package com.jedi.jedi.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,6 +53,12 @@ public class PlanetServiceImpl implements PlanetService{
 			planet.setId(id);
 			repository.save(planet);
 		}
+	}
+
+	@Override
+	public List<Planet> getAllPlanet() {
+		User user = userService.getUserId();
+		return repository.getAllPlanet(user.getId());
 	}
 
 }

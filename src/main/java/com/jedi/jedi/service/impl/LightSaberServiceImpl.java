@@ -64,4 +64,10 @@ public class LightSaberServiceImpl implements LightSaberService {
 		List<LightSaber> lightSaberList = repository.isDuplicated(color, size);
 		return lightSaberList.size() > 0;
 	}
+
+	@Override
+	public List<LightSaber> getAllLightSaber() {
+		User user = userService.getUserId();
+		return repository.getAllLightSaber(user.getId());
+	}
 }

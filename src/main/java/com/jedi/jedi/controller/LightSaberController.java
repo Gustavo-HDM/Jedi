@@ -1,5 +1,7 @@
 package com.jedi.jedi.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -27,33 +29,40 @@ public class LightSaberController {
 
 	@Autowired
 	private LightSaberService service;
-	
+
 	@PostMapping
 	public ResponseEntity<Object> saveLightSaber(@RequestBody LightSaberRequestDTO lightSaberDTO) {
 		try {
-		service.addLightSaber(lightSaberDTO);
+			service.addLightSaber(lightSaberDTO);
 		} catch (DuplicatedLightSaber e) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).body(e.getMessage());
 		}
 		return ResponseEntity.status(HttpStatus.CREATED).build();
 	}
-	
-	@GetMapping ("/{id}")
+
+	@GetMapping("/{id}")
 	public ResponseEntity<LightSaber> getLightSaber(@PathVariable Long id) {
 		LightSaber lightSaber = service.getLightSaber(id);
 		return ResponseEntity.ok(lightSaber);
 	}
-	
-	@DeleteMapping ("/{id}")
+
+	@DeleteMapping("/{id}")
 	public ResponseEntity<LightSaber> delLightSaber(@PathVariable Long id) {
 		service.delLightSaber(id);
 		return ResponseEntity.ok().build();
 	}
-	
+
 	@Transactional
-	@PutMapping ("/{id}")
-	public ResponseEntity<LightSaber> uptLightSaber(@PathVariable Long id, @RequestBody LightSaberRequestDTO lightSaberDTO) {
+	@PutMapping("/{id}")
+	public ResponseEntity<LightSaber> uptLightSaber(@PathVariable Long id,
+			@RequestBody LightSaberRequestDTO lightSaberDTO) {
 		service.uptLightSaber(id, lightSaberDTO);
 		return ResponseEntity.ok().build();
+	}
+
+	@GetMapping("/getAll")
+	public ResponseEntity<List<LightSaber>> getAllLightSaber() {
+		List<LightSaber> lightSaberList = service.getAllLightSaber();
+		return ResponseEntity.ok(lightSaberList);
 	}
 }

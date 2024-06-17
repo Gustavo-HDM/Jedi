@@ -1,5 +1,8 @@
 package com.jedi.jedi.service;
 
+import java.util.List;
+
+import com.jedi.jedi.domain.Padawan;
 import com.jedi.jedi.dto.PadawanRequestDTO;
 import com.jedi.jedi.dto.PadawanResponseDTO;
 
@@ -34,4 +37,6 @@ public interface PadawanService {
 	 * @param padawan
 	 */
 	public void uptPadawan(Long id, PadawanRequestDTO padawanDTO);
+	
+	public List<Padawan> getAllPadawan();
 }

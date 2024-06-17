@@ -6,14 +6,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 @SpringBootApplication
 public class JediApplication {
 
-	//TODO FAZER VALIDAÇÕES
 	//TODO FAZER UM SERVIÇO DE PAGAMENTO (LIMITAR SE NÃO TIVER PAGO)
-	//TODO checar: OneToOne obriga o lightsaber ser registrado a apenas 1 jedi
 	//TODO aplicar ResponseDTO e filtragem de user no GetAll
-	//TODO criar novo usuario
-	//TODO aplicar SWAGGER
-	//TODO estudar chamadas HTTP
-	//TODO retornar mensalidade de String para objeto
+	//TODO VER SOBRE SWAGGER
+	//TODO retornar mensalidade de String para objeto (MUDAR RETORNO DO METODO)
+	//TODO DIFICULDADES EM COLOCAR PROJETO PAGAMENTO NO DOCKER...
+	//TODO FAZER O GETALL COM O USER IGUAL AO FEITO NO JEDI
 	public static void main(String[] args) {
 		SpringApplication.run(JediApplication.class, args);
 	}
