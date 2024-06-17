@@ -15,6 +15,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.squareup.okhttp.OkHttpClient;
+
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity (jsr250Enabled = true)
@@ -48,5 +50,11 @@ public class Configurations {
     public PasswordEncoder passwordEncoder() {
         return new BCryptPasswordEncoder();
     }
+    
+    @Bean
+    public OkHttpClient okHttpClient() {
+    	return new OkHttpClient();
+    }
+    
 	
 }

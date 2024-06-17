@@ -22,7 +22,8 @@ public class PadawanServiceImpl implements PadawanService{
 	@Autowired
 	private PadawanRepository repository;
 	
-	@Autowired UserService userService;
+	@Autowired 
+	private UserService userService;
 	
 	@Override
 	public void addPadawan(PadawanRequestDTO padawanDTO) {

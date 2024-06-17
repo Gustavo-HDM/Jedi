@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.jedi.jedi.api.PagamentoAPI;
 import com.jedi.jedi.domain.Jedi;
 import com.jedi.jedi.domain.LightSaber;
 import com.jedi.jedi.domain.User;
@@ -30,6 +31,9 @@ public class JediServiceImpl implements JediService{
 	
 	@Autowired
 	private LightSaberService lightSaberService;
+	
+	@Autowired
+	private PagamentoAPI pagamento;
 	
 	@Override
 	public void addJedi(JediRequestDTO jediDTO) {
@@ -70,6 +74,7 @@ public class JediServiceImpl implements JediService{
 
 	@Override
 	public List<Jedi> getAllJedi() {
+		pagamento.getMensalidade();
 		User user = userService.getUserId(); 
 		return repository.getAllJedi(user.getId());
 	}
